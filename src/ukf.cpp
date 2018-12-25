@@ -85,6 +85,15 @@ UKF::UKF() {
   // P_ will be initialised by first measurement
   // Xsig_pred_ will be updated every time with sigma points
   Xsig_pred_ = MatrixXd(n_x_, 2 * n_aug_ + 1);
+
+  // Override default noise figures
+  std_a_ = 0.07122683277753132 * 2;
+  std_yawdd_ = 0.0977423960188618 * 2;
+
+  ofLidarNIS_.open("lidar.csv", ios::out | ios::trunc);
+  ofLidarNIS_ << "NIS" << endl;
+  ofRadarNIS_.open("radar.csv", ios::out | ios::trunc);
+  ofRadarNIS_ << "NIS" << endl;
 }
 
 UKF::~UKF() {}
@@ -346,6 +355,9 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
   // update state mean and covariance matrix
   x_ = x_ + K * z_diff;
   P_ = P_ - K * S * K.transpose();
+
+  double NIS = (z - z_pred).transpose() * S.inverse() * (z - z_pred);
+  ofLidarNIS_ << NIS << endl;
 }
 
 void UKF::UpdateRadar(MeasurementPackage meas_package) {
@@ -446,4 +458,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
   // update state mean and covariance matrix
   x_ = x_ + K * z_diff;
   P_ = P_ - K * S * K.transpose();
+
+  double NIS = (z - z_pred).transpose() * S.inverse() * (z - z_pred);
+  ofRadarNIS_ << NIS << endl;
 }

@@ -3,6 +3,7 @@
 
 #include "Eigen/Dense"
 #include "measurement_package.h"
+#include <fstream>
 
 class UKF {
  public:
@@ -95,6 +96,10 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
+  // Log files
+  std::ofstream ofLidarNIS_;
+  std::ofstream ofRadarNIS_;
 };
 
 #endif  // UKF_H
