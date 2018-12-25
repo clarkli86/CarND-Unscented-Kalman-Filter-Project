@@ -59,22 +59,22 @@ def plot_data():
 
     axs[0].plot(t, velocities)
     axs[0].set_title('Velocity')
-    axs[0].set_xlabel('sample')
+    axs[0].set_xlabel('count')
     axs[0].set_ylabel('m/s')
 
     axs[1].plot(t, lon_accels)
     axs[1].set_title('Acceleration')
-    axs[1].set_xlabel('sample')
+    axs[1].set_xlabel('count')
     axs[1].set_ylabel('m/s/s')
 
     axs[2].plot(t, yawrates)
     axs[2].set_title('Yawrate')
-    axs[2].set_xlabel('sample')
+    axs[2].set_xlabel('count')
     axs[2].set_ylabel('rad/s')
 
     axs[3].plot(t, yaw_accels)
     axs[3].set_title('Yaw Acceleration')
-    axs[3].set_xlabel('sample')
+    axs[3].set_xlabel('count')
     axs[3].set_ylabel('rad/s/s')
 
     plt.show()

@@ -93,9 +93,7 @@ UKF::UKF() {
   std_yawdd_ = 0.0977423960188618 * 4;
 
   ofLidarNIS_.open("lidar.csv", ios::out | ios::trunc);
-  ofLidarNIS_ << "NIS" << endl;
   ofRadarNIS_.open("radar.csv", ios::out | ios::trunc);
-  ofRadarNIS_ << "NIS" << endl;
 }
 
 UKF::~UKF() {}
