@@ -87,8 +87,10 @@ UKF::UKF() {
   Xsig_pred_ = MatrixXd(n_x_, 2 * n_aug_ + 1);
 
   // Override default noise figures
-  std_a_ = 0.07122683277753132 * 2;
-  std_yawdd_ = 0.0977423960188618 * 2;
+  // stdev of all samples * 4
+  // If too low NIS looks inconsistent (More than 5% above threshold)
+  std_a_ = 0.07122683277753132 * 4;
+  std_yawdd_ = 0.0977423960188618 * 4;
 
   ofLidarNIS_.open("lidar.csv", ios::out | ios::trunc);
   ofLidarNIS_ << "NIS" << endl;
